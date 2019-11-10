@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+service UserService {
+    rpc Login (LoginRequest) returns (LoginResponse) {}
+    rpc Register(RegisterRequest) returns (RegisterResponse) {}
+}
+
+message Error {
+    string message = 1;
+}
+
+message OK {
+    string message = 1;
+}
+
+message SimpleResponse {
+    OK ok = 1;
+    Error error = 2;
+}
+
+message User {
+    uint32 id = 1;
+    string name = 2;
+    string password = 3;
+    string email = 4;
+    bool verified = 5; 
+}
+
+message RegisterRequest {
+    string name = 1;
+    string password = 2;
+    string email = 3;
+}
+
+message RegisterResponse {
+    OK ok = 1;
+    Error error = 2;
+}
+
+message LoginRequest {
+    string name = 1;
+    string email = 2;
+    string password = 3;   
+}
+
+message LoginResponse {
+    User response = 1;
+    Error error = 2;
+}
